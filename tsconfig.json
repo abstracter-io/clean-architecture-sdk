@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "lib": ["es2022"],
+    "target": "es2021",
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "sourceMap": false,
+    "outDir": "./lib",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "moduleResolution": "node",
+    "isolatedModules": false,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {}
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "tests"]
+}

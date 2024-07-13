@@ -1,0 +1,66 @@
+{
+  "name": "@abstracter/clean-architecture-sdk",
+  "version": "0.1.0",
+  "description": "minimal clean architecture SDK",
+  "main": "lib/index.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=20.3.0"
+  },
+  "files": [
+    "lib",
+    "README.md",
+    "CHANGELOG.md",
+    "!tsconfig.tsbuildinfo"
+  ],
+  "scripts": {
+    "lint": "eslint --format pretty --fix",
+    "lint:all": "npm run lint -- .",
+    "lint:check": "eslint-config-prettier .eslintrc.js",
+    "prepare": "husky",
+    "build": "tsc --pretty && copyfiles -u 1 src/**/*.d.ts lib",
+    "test": "vitest run"
+  },
+  "keywords": [
+    "sdk",
+    "clean",
+    "architecture"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abstracter-io/clean-architecture-sdk.git"
+  },
+  "author": "Elad Chen <eladchen@abstracter.io>",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@abstracter/atomic-release": "^1.3.0",
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@commitlint/cz-commitlint": "^19.2.0",
+    "@eslint/js": "^9.6.0",
+    "@stylistic/eslint-plugin": "^2.3.0",
+    "@vitest/coverage-v8": "^1.6.0",
+    "commitizen": "^4.3.0",
+    "copyfiles": "^2.4.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.57.0",
+    "eslint-formatter-pretty": "^6.0.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^17.9.0",
+    "eslint-plugin-promise": "^6.4.0",
+    "globals": "^15.8.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7",
+    "micromatch": "^4.0.7",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^7.15.0",
+    "vitest": "^1.6.0"
+  },
+  "optionalDependencies": {
+    "joi": "^17.13.3"
+  }
+}

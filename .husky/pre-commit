@@ -1,0 +1,1 @@
+npx --no-install lint-staged -c lint-staged.config.js
