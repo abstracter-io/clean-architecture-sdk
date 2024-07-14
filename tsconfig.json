@@ -6,7 +6,7 @@
     "declaration": true,
     "removeComments": true,
     "sourceMap": false,
-    "outDir": "./lib",
+    "outDir": "./build",
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": true,

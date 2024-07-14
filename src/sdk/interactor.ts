@@ -2,12 +2,13 @@ import { Logger } from './logger';
 import { AppError } from './app-error';
 import { AppException } from './app-exception';
 
-interface InteractorConfig {
+type InteractorConfig = {
   logger: Logger;
-}
+};
 
-interface FailedResult { errors: AppError[] }
-interface SuccessfulResult<T> { output: T }
+type FailedResult = { errors: AppError[] };
+
+type SuccessfulResult<T> = { output: T };
 
 const isFailedResult = (result: FailedResult | SuccessfulResult<unknown>): result is FailedResult => {
   return Object.hasOwn(result, 'errors');

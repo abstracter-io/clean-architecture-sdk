@@ -57,6 +57,8 @@ module.exports = [
         varsIgnorePattern: '^_',
         ignoreRestSiblings: true,
       }],
+
+      '@typescript-eslint/consistent-type-definitions': 'off',
     },
   }),
 
