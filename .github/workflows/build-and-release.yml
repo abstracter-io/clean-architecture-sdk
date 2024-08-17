@@ -1,6 +1,9 @@
 name: Build & Release
 
-on: [push]
+on:
+  push:
+    branches:
+      - "**"
 
 env:
   CI: true
@@ -24,7 +27,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          token: ${{ secrets.BOT_PAT }}
+          fetch-depth: 0
           persist-credentials: true
 
       # https://github.com/actions/setup-node
@@ -41,17 +45,16 @@ jobs:
         with:
           path: node_modules
           # include the branch name here...?
-          key: node-modules-${{ steps.setup-node.outputs.node-version }}-${{ hashFiles('package-lock.json') }}
+          key: node-modules-${{ steps.setup-node.outputs.node-version }}-${{ hashFiles('package.json') }}
 
       - name: Install node_modules
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm install
 
-      # https://commitlint.js.org/guides/ci-setup.html#github-actions
-      # Verify the commit for push & PR's
       - name: Lint Code
-        run: npm run lint:all
+        run: npm run lint
 
+      # https://commitlint.js.org/guides/ci-setup.html#github-actions
       - name: Lint Commit Messages
         run: |
           if [[ '${{github.event_name}}' == 'push' ]]; then
@@ -66,11 +69,8 @@ jobs:
       - name: Test
         run: npm run test
 
-      - name: Fetch Git Tags
-        run: git fetch --prune --tags
-
       - name: Release
-        run: node scripts/release
+        run: npm run release
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           RELEASE_ACTOR: abstracter-bot <bot@abstracter.io>

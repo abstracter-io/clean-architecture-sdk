@@ -1,11 +1,11 @@
 {
   "name": "@abstracter/clean-architecture-sdk",
-  "version": "0.2.0",
-  "description": "minimal clean architecture SDK",
+  "version": "0.0.0",
+  "description": "A clean architecture SDK",
   "main": "lib/index.js",
   "type": "commonjs",
   "engines": {
-    "node": ">=20.3.0"
+    "node": ">=20.9.0"
   },
   "files": [
     "build",
@@ -14,11 +14,13 @@
     "!tsconfig.tsbuildinfo"
   ],
   "scripts": {
-    "lint": "eslint --format pretty --fix",
-    "lint:all": "npm run lint -- .",
+    "lint": "eslint --format pretty",
+    "lint:fix": "npm run lint -- --fix .",
     "prepare": "husky",
-    "build": "tsc --pretty && copyfiles -u 1 src/**/*.d.ts lib",
-    "test": "vitest run"
+    "build": "tsc --pretty",
+    "postbuild": "copyfiles -u 1 src/**/*.d.ts build",
+    "test": "vitest run",
+    "release": "node scripts/release.mjs"
   },
   "keywords": [
     "sdk",
@@ -36,28 +38,20 @@
   "author": "Elad Chen <eladchen@abstracter.io>",
   "license": "UNLICENSED",
   "devDependencies": {
-    "@abstracter/atomic-release": "^1.3.0",
-    "@commitlint/cli": "^19.3.0",
+    "@abstracter/atomic-release": "^2.2.0",
+    "@abstracter/eslint-config": "^2.0.1",
+    "@commitlint/cli": "^19.4.0",
     "@commitlint/config-conventional": "^19.2.2",
-    "@commitlint/cz-commitlint": "^19.2.0",
-    "@eslint/js": "^9.7.0",
-    "@stylistic/eslint-plugin": "^2.3.0",
-    "@vitest/coverage-v8": "^2.0.2",
+    "@commitlint/cz-commitlint": "^19.4.0",
+    "@vitest/coverage-v8": "^2.0.5",
     "commitizen": "^4.3.0",
     "copyfiles": "^2.4.1",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.57.0",
-    "eslint-formatter-pretty": "^6.0.1",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-n": "^17.9.0",
-    "eslint-plugin-promise": "^6.4.0",
-    "globals": "^15.8.0",
-    "husky": "^9.0.11",
-    "lint-staged": "^15.2.7",
+    "husky": "^9.1.4",
+    "lint-staged": "^15.2.9",
     "micromatch": "^4.0.7",
-    "typescript": "^5.5.3",
-    "typescript-eslint": "^7.16.0",
-    "vitest": "^2.0.2"
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.5"
   },
   "optionalDependencies": {
     "joi": "^17.13.3"

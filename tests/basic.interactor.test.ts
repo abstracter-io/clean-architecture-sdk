@@ -15,6 +15,20 @@ class StubInteractor extends BasicInteractor<any, any, string> {
   getJoiSchema = vitest.fn();
 }
 
+const extractAppException = async (promise: Promise<unknown>) => {
+  const e = await promise.catch(e => e);
+
+  expect(e).instanceof(AppException);
+
+  return e as AppException;
+};
+
+const extractAppErrors = async (promise: Promise<unknown>) => {
+  const e = await extractAppException(promise);
+
+  return e.getErrors();
+};
+
 describe('basic interactor', () => {
   test('validation errors', async () => {
     const logger = new Fakes.FakeLogger();
@@ -24,9 +38,7 @@ describe('basic interactor', () => {
       return Joi.object({ x: Joi.number(), y: Joi.string() });
     });
 
-    const e = await interactor.execute({ x: null, unknown: [] }).catch(e => e);
-
-    expect((e as AppException).getErrors()).toStrictEqual([
+    expect(extractAppErrors(interactor.execute({ x: null, unknown: [] }))).resolves.toStrictEqual([
       new AppError('INVALID_ARG', '"x" must be a number'),
       new AppError('INVALID_ARG', '"y" is required'),
       new AppError('INVALID_ARG', '"unknown" is not allowed'),
