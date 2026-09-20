@@ -40,7 +40,7 @@
   "license": "UNLICENSED",
   "devDependencies": {
     "@abstracter/atomic-release": "^2.2.0",
-    "@abstracter/eslint-config": "^2.0.1",
+    "@abstracter/eslint-config": "^3.0.1",
     "@commitlint/cli": "^19.4.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@commitlint/cz-commitlint": "^19.4.0",
@@ -48,6 +48,7 @@
     "commitizen": "^4.3.0",
     "copyfiles": "^2.4.1",
     "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^10.0.0",
     "husky": "^9.1.4",
     "lint-staged": "^15.2.9",
     "micromatch": "^4.0.7",
